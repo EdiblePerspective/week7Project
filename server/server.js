@@ -14,7 +14,15 @@ app.get("/", (request, response) => {
     response.json("Root route response");
 });
 
-//endpoint here
+app.get("/categories", async (request, response) => {
+    const result = await db.query("SELECT * FROM categories");
+    response.json(result.rows);
+  });
+app.get("/posts", async (request, response) => {
+    const result = await db.query("SELECT * FROM posts");
+    response.json(result.rows);
+  });
+
 
 // start server
 app.listen(PORT, () => console.log(`App is running on PORT ${PORT}`));
